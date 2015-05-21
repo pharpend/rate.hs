@@ -1,10 +1,10 @@
 Name:                ratehs
 Version:             0.1
-Synopsis:            Project Synopsis Here
-Description:         Project Description Here
-License:             AllRightsReserved
-Author:              Author
-Maintainer:          maintainer@example.com
+Synopsis:            rate web app
+Description:         web app for rating things, to remember what was good
+License:             GPLv2
+Author:              Matthias Beyer
+Maintainer:          mail@beyermatthias.de
 Stability:           Experimental
 Category:            Web
 Build-type:          Simple
