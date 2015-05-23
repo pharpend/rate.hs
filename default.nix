@@ -11,6 +11,7 @@ let
     snap
     snap-core
     snap-server
+    snap-loader-static
 
     snaplet-persistent
 
