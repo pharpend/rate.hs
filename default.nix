@@ -13,11 +13,7 @@ let
     snap-server
     snap-loader-static
 
-    snaplet-persistent
-
-    persistent
-    persistent-postgresql
-    persistent-sqlite
+    snaplet-postgresql-simple
 
     heist
 
