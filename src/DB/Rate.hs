@@ -5,6 +5,8 @@ module DB.Rate
 
 import Data.Text
 import Data.Function (on)
+import Control.Applicative
+import Database.PostgreSQL.Simple.FromRow
 
 type Rating = Maybe Int
 
@@ -24,6 +26,9 @@ instance Show Rate where
 
 instance Read Rate where
   read title = Rate title "" Nothing
+
+instance FromRow Rate where
+  fromRow = Rate <$> field <*> field <*> field
 
 mkRate :: String -> Text -> Rate
 mkRate title text = Rate title text Nothing
