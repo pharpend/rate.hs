@@ -24,9 +24,6 @@ instance Ord Rate where
 instance Show Rate where
   show r = (title r) ++ " [" ++ (rating r) ++ "]"
 
-instance Read Rate where
-  read title = Rate title "" Nothing
-
 instance FromRow Rate where
   fromRow = Rate <$> field <*> field <*> field
 
