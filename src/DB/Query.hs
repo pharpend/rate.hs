@@ -4,6 +4,10 @@ module DB.Query
 ) where
 
 import DB.Category (Category)
+import Snap
+import Snap.Snaplet.PostgresqlSimple
+import Control.Monad.IO.Class
+import Application
 
 allCategories :: Handler App App ()
 allCategories = do
