@@ -21,8 +21,8 @@ instance Ord Rate where
   compare = compare `on` rating
 
 instance Show Rate where
- show (Rate t x Nothing)  = t ++ " [<no rating>]"
- show (Rate t x (Just r)) = t ++ " [" ++ show r ++ "]"
+ show (Rate t _ Nothing)  = t ++ " [<no rating>]"
+ show (Rate t _ (Just r)) = t ++ " [" ++ show r ++ "]"
 
 instance FromRow Rate where
   fromRow = Rate <$> field <*> field <*> field
