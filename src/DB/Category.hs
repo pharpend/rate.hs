@@ -1,13 +1,15 @@
 module DB.Category
 ( Category
-, putEntity
+, Entity
 ) where
 
-import DB.Entity
-import Data.Function (on)
 import Control.Applicative
+import DB.Rate (Rate)
+import Data.Function (on)
 import Database.PostgreSQL.Simple.FromRow
 import qualified Data.Text as T
+
+type Entity = Either Category Rate
 
 data Category = Category { title :: String
                          , description :: T.Text
@@ -18,24 +20,4 @@ instance Ord Category where
 
 instance Eq Category where
   (==) = (==) `on` title
-
-instance Show Category where
-  show (Category t []) = show t
-  show (Category t es) = show t ++ "\n" ++ treeShow 0 es
-    where
-      treeShow n [] = ""
-      treeShow n ((Category t es),xs) =indent ++ thisTree ++ restTree
-      where
-        indent = replicate n "\t"
-        thisTree = treeShow (succ n) es
-        restTree = treeShow n xs
-
-instance Read Category where
-  read title = Category title (pack "") []
-
-instance FromRow Category where
-  fromRow = Category <$> field <*> field <*>
-
-putEntity :: Category -> Entity -> Category
-putEntity (Category title xs) e = Category title (e : xs)
 
