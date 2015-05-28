@@ -5,6 +5,7 @@ module DB.Rate
 
 import Data.Text
 import Data.Function (on)
+import Database.PostgreSQL.Simple.FromRow
 
 type Rating = Maybe Int
 
@@ -22,6 +23,9 @@ instance Ord Rate where
 instance Show Rate where
  show (Rate t _ Nothing)  = t ++ " [<no rating>]"
  show (Rate t _ (Just r)) = t ++ " [" ++ show r ++ "]"
+
+instance FromRow Rate where
+  fromRow = Rate <$> field <*> field <*> field
 
 mkRate :: String -> Text -> Rate
 mkRate t x = Rate t x Nothing
