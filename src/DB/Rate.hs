@@ -28,5 +28,5 @@ instance FromRow Rate where
   fromRow = Rate <$> field <*> field <*> field
 
 mkRate :: String -> Text -> Rate
-mkRate title text = Rate title text Nothing
+mkRate t x = Rate t x Nothing
 
