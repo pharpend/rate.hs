@@ -5,7 +5,6 @@ module DB.Rate
 
 import Data.Text
 import Data.Function (on)
-import Control.Applicative
 import Database.PostgreSQL.Simple.FromRow
 
 type Rating = Maybe Int
