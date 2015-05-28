@@ -5,6 +5,8 @@ module DB.Category
 
 import DB.Entity
 import Data.Function (on)
+import Control.Applicative
+import Database.PostgreSQL.Simple.FromRow
 
 data Category = Category { title :: String
                          , entries :: [Entity] }
@@ -28,6 +30,9 @@ instance Show Category where
 
 instance Read Category where
   read title = Category title []
+
+instance FromRow Category where
+  fromRow = Category <$> field <*> field
 
 putEntity :: Category -> Entity -> Category
 putEntity (Category title xs) e = Category title (e : xs)
