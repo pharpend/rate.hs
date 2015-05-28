@@ -6,6 +6,8 @@ module DB.Category
 import Data.Function (on)
 import DB.Rate (Rate)
 import qualified Data.Text as T
+import Control.Applicative
+import Database.PostgreSQL.Simple.FromRow
 
 type Entity = Either Category Rate
 
@@ -18,4 +20,7 @@ instance Ord Category where
 
 instance Eq Category where
   (==) = (==) `on` title
+
+instance FromRow Category where
+  fromRow = Category <$> field <*> field <*> field
 
