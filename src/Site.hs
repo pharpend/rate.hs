@@ -26,6 +26,8 @@ import qualified Heist.Interpreted as I
 ------------------------------------------------------------------------------
 import           Application
 
+import qualified Routes as R
+
 
 ------------------------------------------------------------------------------
 -- | Render login form
@@ -68,7 +70,7 @@ routes = [ ("/login",    with auth handleLoginSubmit)
          , ("/logout",   with auth handleLogout)
          , ("/new_user", with auth handleNewUser)
          , ("",          serveDirectory "static")
-         ]
+         ] ++ R.routes
 
 
 ------------------------------------------------------------------------------
