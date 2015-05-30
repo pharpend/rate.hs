@@ -11,9 +11,10 @@ import Database.PostgreSQL.Simple.FromRow
 
 type Entity = Either Category Rate
 
-data Category = Category { title :: String
+data Category = Category { id :: Int
+                         , title :: String
                          , description :: T.Text
-                         , entries :: [Entity] }
+                         }
 
 instance Ord Category where
   compare = compare `on` title
@@ -25,7 +26,8 @@ instance FromRow Category where
   fromRow = Category <$> field <*> field <*> field
 
 instance ToRow Category where
-  toRow Category{..} = [ toField title
+  toRow Category{..} = [ toField id
+                       , toField title
                        , toField description
                        ]
 
