@@ -33,6 +33,7 @@ import           Application ( App(..)
 
 import DB.Category
 import DB.Rate
+import DB.Query
 
 ------------------------------------------------------------------------------
 -- | Render login form
