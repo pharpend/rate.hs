@@ -1,12 +1,16 @@
+{-# Language RecordWildCards #-}
+
 module DB.Category
 ( Category
 ) where
 
+import Prelude hiding (id)
 import Data.Function (on)
-import DB.Rate (Rate)
 import qualified Data.Text as T
 import Control.Applicative
 import Database.PostgreSQL.Simple.FromRow
+import Database.PostgreSQL.Simple.ToRow
+import Database.PostgreSQL.Simple.ToField
 
 data Category = Category { id :: Int
                          , title :: String
