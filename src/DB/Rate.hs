@@ -1,11 +1,15 @@
+{-# Language RecordWildCards #-}
+
 module DB.Rate
 ( Rate
-, mkRate
 ) where
 
+import Prelude hiding (id)
 import Data.Text
 import Data.Function (on)
 import Database.PostgreSQL.Simple.FromRow
+import Database.PostgreSQL.Simple.ToRow
+import Database.PostgreSQL.Simple.ToField
 
 type Rating = Maybe Int
 
@@ -23,8 +27,8 @@ instance Ord Rate where
   compare = compare `on` rating
 
 instance Show Rate where
- show (Rate t _ Nothing)  = t ++ " [<no rating>]"
- show (Rate t _ (Just r)) = t ++ " [" ++ show r ++ "]"
+ show (Rate _ _ t _ Nothing)  = t ++ " [<no rating>]"
+ show (Rate _ _ t _ (Just r)) = t ++ " [" ++ show r ++ "]"
 
 instance FromRow Rate where
   fromRow = Rate <$> field <*> field <*> field <*> field <*> field
@@ -36,7 +40,4 @@ instance ToRow Rate where
                    , toField text
                    , toField rating
                    ]
-
-mkRate :: String -> Text -> Rate
-mkRate t x = Rate t x Nothing
 
