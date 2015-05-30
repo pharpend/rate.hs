@@ -17,6 +17,7 @@ module Application
 import Control.Lens
 import Snap
 import Control.Monad.State
+import Control.Monad.Reader
 import Snap.Snaplet.Heist
 import Snap.Snaplet.Auth
 import Snap.Snaplet.Session
@@ -37,6 +38,7 @@ instance HasHeist App where
 
 instance HasPostgres (Handler b App) where
   getPostgresState = with pg get
+  setLocalPostgresState s = local $ set (pg . snapletValue) s
 
 ------------------------------------------------------------------------------
 type AppHandler = Handler App App
