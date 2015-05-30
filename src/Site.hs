@@ -31,6 +31,8 @@ import           Application ( App(..)
                              , pg
                              )
 
+import DB.Category
+import DB.Rate
 
 ------------------------------------------------------------------------------
 -- | Render login form
