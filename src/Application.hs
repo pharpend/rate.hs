@@ -4,7 +4,14 @@
 ------------------------------------------------------------------------------
 -- | This module defines our application's state type and an alias for its
 -- handler monad.
-module Application where
+module Application
+( App(..)
+, heist
+, sess
+, auth
+, pg
+, AppHandler
+) where
 
 ------------------------------------------------------------------------------
 import Control.Lens
