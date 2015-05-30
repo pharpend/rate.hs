@@ -27,6 +27,12 @@ instance Show Rate where
 instance FromRow Rate where
   fromRow = Rate <$> field <*> field <*> field
 
+instance ToRow Rate where
+  toRow Rate{..} = [ toField title
+                   , toField text
+                   , toField rating
+                   ]
+
 mkRate :: String -> Text -> Rate
 mkRate t x = Rate t x Nothing
 
