@@ -23,6 +23,9 @@ instance Ord Category where
 instance Eq Category where
   (==) = (==) `on` title
 
+instance Show Category where
+  show (Category _ t _) = "Category: " ++ t
+
 instance FromRow Category where
   fromRow = Category <$> field <*> field <*> field
 
