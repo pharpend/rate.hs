@@ -24,3 +24,8 @@ instance Eq Category where
 instance FromRow Category where
   fromRow = Category <$> field <*> field <*> field
 
+instance ToRow Category where
+  toRow Category{..} = [ toField title
+                       , toField description
+                       ]
+
