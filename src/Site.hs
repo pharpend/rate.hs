@@ -19,11 +19,17 @@ import           Snap.Snaplet.Auth
 import           Snap.Snaplet.Auth.Backends.JsonFile
 import           Snap.Snaplet.Heist
 import           Snap.Snaplet.Session.Backends.CookieSession
+import           Snap.Snaplet.PostgresqlSimple (pgsInit)
 import           Snap.Util.FileServe
 import           Heist
 import qualified Heist.Interpreted as I
 ------------------------------------------------------------------------------
-import           Application
+import           Application ( App(..)
+                             , heist
+                             , auth
+                             , sess
+                             , pg
+                             )
 
 
 ------------------------------------------------------------------------------
@@ -83,7 +89,8 @@ app = makeSnaplet "app" "An snaplet example application." Nothing $ do
     -- you'll probably want to change this to a more robust auth backend.
     a <- nestSnaplet "auth" auth $
            initJsonFileAuthManager defAuthSettings sess "users.json"
+    db <- nestSnaplet "pg" pg pgsInit
     addRoutes routes
     addAuthSplices h auth
-    return $ App h s a
+    return $ App h s a db
 
