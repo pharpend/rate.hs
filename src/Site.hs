@@ -28,7 +28,7 @@ handleShowCategory = do
   writeCategory =<< getParam "category"
   where
     writeCategory (Just c) = writeBS $ "Here should be your category: " <> c
-    writeCategory Nothing = writeBS "No category passed"
+    writeCategory Nothing = writeBS "Here should be a tree of categories"
 
 ------------------------------------------------------------------------------
 -- | New category
@@ -43,7 +43,7 @@ handleShowRating = do
   showRating =<< getParam "rating"
   where
     showRating (Just r) = writeBS $ "Here should be your rating: " <> r
-    showRating Nothing  = writeBS "No rating passed"
+    showRating Nothing  = writeBS "Here should be a list of all ratings"
 
 ------------------------------------------------------------------------------
 -- | New Rating
@@ -55,7 +55,9 @@ handleNewRating = do
 -- | The application's routes.
 routes :: [(ByteString, Handler App App ())]
 routes = [ ("/category/:category",  handleShowCategory)
+         , ("/category/",           handleShowCategory)
          , ("/category/new",        handleNewCategory)
+         , ("/rating/",             handleShowRating)
          , ("/rating/:rating",      handleShowRating)
          , ("/rating/new",          handleNewRating)
          , ("",                     serveDirectory "static")
