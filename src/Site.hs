@@ -22,7 +22,7 @@ import           Application ( App(..)
 import Data.Monoid ((<>))
 
 ------------------------------------------------------------------------------
-
+-- | Show a category
 handleShowCategory :: Handler App App ()
 handleShowCategory = do
   writeCategory =<< getParam "category"
@@ -31,10 +31,20 @@ handleShowCategory = do
     writeCategory Nothing = writeBS "No category passed"
 
 ------------------------------------------------------------------------------
+-- | Show a rating
+handleShowRating :: Handler App App ()
+handleShowRating = do
+  showRating =<< getParam "rating"
+  where
+    showRating (Just r) = writeBS $ "Here should be your rating: " <> r
+    showRating Nothing  = writeBS "No rating passed"
+
+------------------------------------------------------------------------------
 -- | The application's routes.
 routes :: [(ByteString, Handler App App ())]
-routes = [ ("/category/:category", handleShowCategory)
-         , ("",          serveDirectory "static")
+routes = [ ("/category/:category",  handleShowCategory)
+         , ("/rating/:rating",      handleShowRating)
+         , ("",                     serveDirectory "static")
          ]
 
 
