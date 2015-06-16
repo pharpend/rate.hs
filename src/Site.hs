@@ -10,6 +10,7 @@ module Site
 
 ------------------------------------------------------------------------------
 import           Data.ByteString (ByteString)
+import           Snap.Core
 import           Snap.Snaplet
 import           Snap.Snaplet.Heist
 import           Snap.Util.FileServe
@@ -19,9 +20,21 @@ import           Application ( App(..)
                              )
 
 ------------------------------------------------------------------------------
+
+handleNoCategory :: Handler App App ()
+handleNoCategory = writeText "No category passed"
+
+handleShowCategory :: Handler App App ()
+handleShowCategory = do
+  category <- getParam "category"
+  writeText "Here should be your category"
+
+------------------------------------------------------------------------------
 -- | The application's routes.
 routes :: [(ByteString, Handler App App ())]
-routes = [ ("",          serveDirectory "static")
+routes = [ ("/category/:category", handleShowCategory)
+         , ("/category/",          handleNoCategory)
+         , ("",          serveDirectory "static")
          ]
 
 
