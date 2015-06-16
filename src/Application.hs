@@ -47,3 +47,23 @@ data Rating = Rating { rName :: String
                      , rDesc :: Text
                      , cat  :: DefaultKey Category
                      }
+
+mkPersist defaultCodegenConfig [groundhog|
+- entity: Category
+  constructors:
+    - name: Category
+      fields:
+        - name: cName
+      uniques:
+        - name: NameConstraint
+          fields: [cName]
+- entity: Rating
+  constructors:
+    - name: Rating
+      fields:
+        - name: rName
+      uniques:
+        - name: NameConstraint
+          fields: [rName]
+|]
+
