@@ -19,21 +19,21 @@ import           Application ( App(..)
                              , heist
                              )
 
-------------------------------------------------------------------------------
+import Data.Monoid ((<>))
 
-handleNoCategory :: Handler App App ()
-handleNoCategory = writeText "No category passed"
+------------------------------------------------------------------------------
 
 handleShowCategory :: Handler App App ()
 handleShowCategory = do
-  category <- getParam "category"
-  writeText "Here should be your category"
+  writeCategory =<< getParam "category"
+  where
+    writeCategory (Just c) = writeBS $ "Here should be your category: " <> c
+    writeCategory Nothing = writeBS "No category passed"
 
 ------------------------------------------------------------------------------
 -- | The application's routes.
 routes :: [(ByteString, Handler App App ())]
 routes = [ ("/category/:category", handleShowCategory)
-         , ("/category/",          handleNoCategory)
          , ("",          serveDirectory "static")
          ]
 
