@@ -31,6 +31,12 @@ handleShowCategory = do
     writeCategory Nothing = writeBS "No category passed"
 
 ------------------------------------------------------------------------------
+-- | New category
+handleNewCategory :: Handler App App ()
+handleNewCategory = do
+    writeBS "Here should be a form to create a new Category"
+
+------------------------------------------------------------------------------
 -- | Show a rating
 handleShowRating :: Handler App App ()
 handleShowRating = do
@@ -40,10 +46,18 @@ handleShowRating = do
     showRating Nothing  = writeBS "No rating passed"
 
 ------------------------------------------------------------------------------
+-- | New Rating
+handleNewRating :: Handler App App ()
+handleNewRating = do
+    writeBS "Here should be a form to create a new Rating"
+
+------------------------------------------------------------------------------
 -- | The application's routes.
 routes :: [(ByteString, Handler App App ())]
 routes = [ ("/category/:category",  handleShowCategory)
+         , ("/category/new",        handleNewCategory)
          , ("/rating/:rating",      handleShowRating)
+         , ("/rating/new",          handleNewRating)
          , ("",                     serveDirectory "static")
          ]
 
