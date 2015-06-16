@@ -15,6 +15,9 @@ import Control.Lens
 import Snap
 import Snap.Snaplet.Heist
 
+import Data.Text (Text)
+import qualified Data.Text as T
+
 ------------------------------------------------------------------------------
 data App = App
     { _heist :: Snaplet (Heist App)
@@ -28,4 +31,13 @@ instance HasHeist App where
 ------------------------------------------------------------------------------
 type AppHandler = Handler App App
 
+------------------------------------------------------------------------------
 
+data Category = Category { cName :: String
+                         , cDesc :: Text
+                         }
+
+data Rating = Rating { rName :: String
+                     , rDesc :: Text
+                     -- , cat  :: DefaultKey Category
+                     }
