@@ -26,12 +26,17 @@ import qualified Data.Text as T
 ------------------------------------------------------------------------------
 data App = App
     { _heist :: Snaplet (Heist App)
+    , _gh    :: Pool Sqlite
     }
 
 makeLenses ''App
 
 instance HasHeist App where
     heistLens = subSnaplet heist
+
+instance ConnectionManager App Sqlite where
+  withConn f app = withConn f (_gh app)
+  withConnNoTransaction f app = withConnNoTransaction f (_gh app)
 
 ------------------------------------------------------------------------------
 type AppHandler = Handler App App
