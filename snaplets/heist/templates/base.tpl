@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Snap web server</title>
+    <title>Rate.hs - Rate your things</title>
     <link rel="stylesheet" type="text/css" href="/screen.css"/>
   </head>
   <body>
