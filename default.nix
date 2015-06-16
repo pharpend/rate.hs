@@ -13,7 +13,11 @@ let
     snap-server
     snap-loader-static
 
-    snaplet-postgresql-simple
+    groundhog
+    groundhog-sqlite
+    groundhog-th
+
+    lens
 
     heist
 
