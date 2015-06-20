@@ -40,11 +40,5 @@ stdenv.mkDerivation rec {
 
     buildInputs = [ env ];
 
-    # meta = {
-    #   homepage = "http://github.com/hamot/hamot";
-    #   description = "Haskell Money Tracker application";
-    #   license = self.stdenv.lib.licenses.gpl2;
-    #   platforms = self.ghc.meta.platforms;
-    # };
 }
 
