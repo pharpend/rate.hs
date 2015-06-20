@@ -1,5 +1,6 @@
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE FlexibleInstances #-}
+{-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE GADTs, TypeFamilies, QuasiQuotes, StandaloneDeriving #-}
 
 ------------------------------------------------------------------------------
