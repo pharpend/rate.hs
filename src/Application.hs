@@ -17,7 +17,7 @@ import Snap
 import Snap.Snaplet.Heist
 
 import Database.Groundhog.TH
-import Database.Groundhog.Sqlite
+import Database.Groundhog.Postgresql
 import Control.Monad.IO.Class (liftIO)
 
 import Data.Text (Text)
@@ -26,7 +26,7 @@ import qualified Data.Text as T
 ------------------------------------------------------------------------------
 data App = App
     { _heist :: Snaplet (Heist App)
-    , _gh    :: Pool Sqlite
+    , _gh    :: Pool Postgresql
     }
 
 makeLenses ''App
@@ -34,7 +34,7 @@ makeLenses ''App
 instance HasHeist App where
     heistLens = subSnaplet heist
 
-instance ConnectionManager App Sqlite where
+instance ConnectionManager App Postgresql where
   withConn f app = withConn f (_gh app)
   withConnNoTransaction f app = withConnNoTransaction f (_gh app)
 
