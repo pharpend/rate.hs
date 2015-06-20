@@ -18,6 +18,8 @@ import           Database.Groundhog.Postgresql (createPostgresqlPool)
 ------------------------------------------------------------------------------
 import           Application ( App(..)
                              , heist
+                             , Category(..)
+                             , Rating(..)
                              )
 
 import Data.Monoid ((<>))
