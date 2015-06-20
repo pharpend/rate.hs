@@ -1,3 +1,6 @@
 log
 dist
 site_key.txt
+/.cabal-sandbox/
+/cabal.sandbox.config
+/users.json
