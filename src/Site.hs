@@ -71,7 +71,7 @@ app :: SnapletInit App App
 app = makeSnaplet "app" "An snaplet example application." Nothing $ do
     h <- nestSnaplet "" heist $ heistInit "templates"
     let
-      connString = "host=localhost port=5432 dbname=ratehs password=ratehs"
+      connString = "host=localhost port=5432 dbname=ratehs"
     gh <- createPostgresqlPool connString 5
     addRoutes routes
     return $ App h gh
