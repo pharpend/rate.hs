@@ -70,7 +70,9 @@ routes = [ ("/category/:category",  handleShowCategory)
 app :: SnapletInit App App
 app = makeSnaplet "app" "An snaplet example application." Nothing $ do
     h <- nestSnaplet "" heist $ heistInit "templates"
-    gh <- createPostgresqlPool "" 5
+    let
+      connString = "host=localhost port=5432 dbname=ratehs password=ratehs"
+    gh <- createPostgresqlPool connString 5
     addRoutes routes
     return $ App h gh
 
