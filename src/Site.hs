@@ -14,6 +14,7 @@ import           Snap.Core
 import           Snap.Snaplet
 import           Snap.Snaplet.Heist
 import           Snap.Util.FileServe
+import           Database.Groundhog.Postgresql (createPostgresqlPool)
 ------------------------------------------------------------------------------
 import           Application ( App(..)
                              , heist
@@ -69,6 +70,7 @@ routes = [ ("/category/:category",  handleShowCategory)
 app :: SnapletInit App App
 app = makeSnaplet "app" "An snaplet example application." Nothing $ do
     h <- nestSnaplet "" heist $ heistInit "templates"
+    gh <- createPostgresqlPool "" 5
     addRoutes routes
-    return $ App h
+    return $ App h gh
 
