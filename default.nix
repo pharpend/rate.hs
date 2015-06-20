@@ -14,8 +14,10 @@ let
     snap-loader-static
 
     groundhog
-    groundhog-sqlite
+    groundhog-postgresql
     groundhog-th
+
+    resource-pool
 
     lens
 
