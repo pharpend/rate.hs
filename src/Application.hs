@@ -10,6 +10,8 @@ module Application
 ( App(..)
 , heist
 , AppHandler
+, Category(..)
+, Rating(..)
 ) where
 
 ------------------------------------------------------------------------------
