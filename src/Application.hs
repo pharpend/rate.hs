@@ -17,6 +17,7 @@ import Snap
 import Snap.Snaplet.Heist
 
 import Data.Pool
+import Database.Groundhog.Core (ConnectionManager(..))
 import Database.Groundhog.TH
 import Database.Groundhog.Postgresql
 import Control.Monad.IO.Class (liftIO)
