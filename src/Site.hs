@@ -14,6 +14,7 @@ import           Snap.Core
 import           Snap.Snaplet
 import           Snap.Snaplet.Heist
 import           Snap.Util.FileServe
+import           Database.Groundhog
 import           Database.Groundhog.Postgresql (createPostgresqlPool)
 ------------------------------------------------------------------------------
 import           Application ( App(..)
@@ -75,6 +76,9 @@ app = makeSnaplet "app" "An snaplet example application." Nothing $ do
     let
       connString = "host=localhost port=5432 dbname=ratehs"
     gh <- createPostgresqlPool connString 5
+    runMigration $ do
+      migrate (undefined :: Category)
+      migrate (undefined :: Rating)
     addRoutes routes
     return $ App h gh
 
